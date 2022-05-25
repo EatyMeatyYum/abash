@@ -1,1 +1,1 @@
-nexusclient.display_notice("This is a test!", "yellow");
+nexusclient.print("This is a test!", "yellow");
