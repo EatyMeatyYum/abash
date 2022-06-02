@@ -1,3 +1,3 @@
-nexusclient.send_direct("who here");
+send_direct("who here");
 console.log("file loaded!");
-nexusclient.display_notice("Testing...");
+display_notice("Testing...");
