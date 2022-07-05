@@ -1,2 +1,1 @@
-console.log("file loaded!");
-display_notice("Testing...");
+display_notice("Testing...", "yellow");
