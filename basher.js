@@ -1,1 +1,1 @@
-display_notice("Testing...", "yellow");
+send_command("echo Test passed!");
