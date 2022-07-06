@@ -1,1 +1,1 @@
-console.log("ABash loaded");
+console.log("ABash loaded!");
