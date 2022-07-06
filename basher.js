@@ -1,1 +1,1 @@
-// testing
+console.log("ABash loaded");
