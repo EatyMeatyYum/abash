@@ -1,2 +1,2 @@
 console.log("ABash loaded successfully");
-send_command("who here");
+nexusclient.datahandler().send_command("who here");
