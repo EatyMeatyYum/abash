@@ -122,9 +122,11 @@ const abash = {
 		if (enemyFound == false) {
 			nexusclient.display_notice("No enemies found", "green");
 			nexusclient.datahandler().send_command("st none");
-			abash.disableBR();
+			//abash.disableBR();
+			nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
-			abash.enableBR();
+			//abash.enableBR();
+			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempAttack);
 		}
 	},
