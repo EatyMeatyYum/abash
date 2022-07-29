@@ -1,5 +1,6 @@
 console.log("ABash loaded successfully");
 nexusclient.datahandler().send_command("who here");
+eventBus.unsubscribe('denizenSlain', 'denSlain');
 
 if(!nexusclient.variables().get("basharrrPrioList")) {
   nexusclient.display_notice("There's no bashing prio list!!!", "red");
