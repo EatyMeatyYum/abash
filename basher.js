@@ -51,13 +51,13 @@ const abash = {
 				nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
 			}
 
-			attackThings();
+			abash.attackThings();
 		}
 		eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
 
 		// Trigger: Main attack trigger
 		const attackReady = function() {
-			commitAttack();
+			abash.commitAttack();
 		}
 		eventBus.subscribe('affRemProne', attackReady, 'attackReady');
 		eventBus.subscribe('affRemParalysis', attackReady, 'attackReady');
