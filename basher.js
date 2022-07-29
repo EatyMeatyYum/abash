@@ -44,11 +44,13 @@ var denSlain = function(denizen) {
 eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
 
 function attackThings() {
+  nexusclient.display_notice("Running attackThings function!", "yellow");
   var roomItems = GMCP.Items.room;
   var prioList = nexusclient.variables().get("basharrrPrioList");
   var currentArea = nexusclient.variables().get("currentArea");
   var enemyList = prioList[currentArea];
   var enemyFound = false;
+  nexusclient.display_notice("enemyFound = false", "yellow");
   var myClass = nexusclient.variables().get("curClass");
   var tempAttack = "gut";
   var bashing = nexusclient.variables().get("bashing");
@@ -74,6 +76,7 @@ function attackThings() {
     	enemyList.forEach(function(el2) {
 	      if(el.name == el2) {
     	    enemyFound = true;
+	    nexusclient.display_notice("Found an enemy!", "yellow");
           nexusclient.datahandler().send_command("st " + el.id);
    	    }
       });
