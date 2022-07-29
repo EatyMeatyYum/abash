@@ -39,9 +39,29 @@ var denSlain = function(denizen) {
   }
 
   attackThings();
-  //nexusclient.datahandler().send_command("attackThings");
 }
 eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
+
+// Trigger: Main attack trigger
+var attackReady = function() {
+	var bashing = nexusclient.variables().get("bashing");
+
+	if(bashing) {
+		//var atkCommand = "gut";
+		var atkCommand = get_variable("atkCommand");
+
+		send_command(atkCommand);
+	}
+}
+eventBus.subscribe('affRemProne', attackReady, 'attackReady');
+eventBus.subscribe('affRemParalysis', attackReady, 'attackReady');
+eventBus.subscribe('affRemBound', attackReady, 'attackReady');
+eventBus.subscribe('affRemEntangled', attackReady, 'attackReady');
+eventBus.subscribe('affRemTransfixation', attackReady, 'attackReady');
+eventBus.subscribe('affRemWebbed', attackReady, 'attackReady');
+eventBus.subscribe('affRemStunned', attackReady, 'attackReady');
+eventBus.subscribe('onEq', attackReady, 'attackReady');
+eventBus.subscribe('onBal', attackReady, 'attackReady');
 
 function attackThings() {
   nexusclient.display_notice("Running attackThings function!", "yellow");
@@ -86,9 +106,17 @@ function attackThings() {
   if (enemyFound == false) {
     nexusclient.display_notice("No enemies found", "green");
     nexusclient.datahandler().send_command("st none");
-    nexusclient.datahandler().send_command("disableBR");
+    disableBR();
   } else if (bashing == false) {
-    nexusclient.datahandler().send_command("enableBR");
+    enableBR();
     nexusclient.datahandler().send_command(tempAttack);
   }
+}
+
+function enableBR() {
+	nexusclient.variables().set("bashing", true);
+}
+
+function disableBR() {
+	nexusclient.variables().set("bashing", false);
 }
