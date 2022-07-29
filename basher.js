@@ -45,7 +45,7 @@ eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
 
 function attackThings() {
   nexusclient.display_notice("Running attackThings function!", "yellow");
-  var roomItems = GMCP.Items.room;
+  var roomItems = nexusclient.datahandler().GMCP.Items.room;
   var prioList = nexusclient.variables().get("basharrrPrioList");
   var currentArea = nexusclient.variables().get("currentArea");
   var enemyList = prioList[currentArea];
