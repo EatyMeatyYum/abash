@@ -71,7 +71,7 @@ const abash = {
 
 	},
 
-	function attackThings() {
+	attackThings() {
 		nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		var prioList = nexusclient.variables().get("basharrrPrioList");
@@ -121,15 +121,15 @@ const abash = {
 		}
 	}
 
-	function enableBR() {
+	enableBR() {
 		nexusclient.variables().set("bashing", true);
 	}
 
-	function disableBR() {
+	disableBR() {
 		nexusclient.variables().set("bashing", false);
 	}
 
-	function commitAttack() {
+	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
 
 		if(bashing) {
