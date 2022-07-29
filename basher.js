@@ -71,6 +71,14 @@ const abash = {
 
 	},
 
+	enableBR() {
+		nexusclient.variables().set("bashing", true);
+	},
+
+	disableBR() {
+		nexusclient.variables().set("bashing", false);
+	},
+	
 	attackThings() {
 		nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
@@ -119,14 +127,6 @@ const abash = {
 			abash.enableBR();
 			nexusclient.datahandler().send_command(tempAttack);
 		}
-	},
-
-	enableBR() {
-		nexusclient.variables().set("bashing", true);
-	},
-
-	disableBR() {
-		nexusclient.variables().set("bashing", false);
 	},
 
 	commitAttack() {
