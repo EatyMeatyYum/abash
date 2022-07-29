@@ -23,7 +23,7 @@ if(!nexusclient.variables().get("basharrrPrioList")) {
 
 // Trigger: When a denizen is slain
 
-var denSlain = function(denizen) {
+const denSlain = function(denizen) {
   var slainDenizen = denizen;
   var currentArea = nexusclient.variables().get("currentArea");
   var prioList = nexusclient.variables().get("basharrrPrioList");
@@ -54,7 +54,7 @@ var denSlain = function(denizen) {
 eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
 
 // Trigger: Main attack trigger
-var attackReady = function() {
+const attackReady = function() {
 	commitAttack();
 }
 eventBus.subscribe('affRemProne', attackReady, 'attackReady');
@@ -130,7 +130,7 @@ function commitAttack() {
 
 	if(bashing) {
 		//var atkCommand = "gut";
-		var atkCommand = get_variable("atkCommand");
+		var atkCommand = nexusclient.variables().get("atkCommand");
 
 		send_command(atkCommand);
 	}
