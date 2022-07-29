@@ -119,15 +119,15 @@ const abash = {
 			enableBR();
 			nexusclient.datahandler().send_command(tempAttack);
 		}
-	}
+	},
 
 	enableBR() {
 		nexusclient.variables().set("bashing", true);
-	}
+	},
 
 	disableBR() {
 		nexusclient.variables().set("bashing", false);
-	}
+	},
 
 	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
