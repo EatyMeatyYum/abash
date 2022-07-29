@@ -1,4 +1,4 @@
-let abash = {
+const abash = {
 	startUp() {
 		console.log("ABash loaded successfully");
 		nexusclient.datahandler().send_command("who here");
