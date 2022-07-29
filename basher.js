@@ -71,13 +71,13 @@ const abash = {
 
 	},
 
-	enableBR() {
+	/*enableBR() {
 		nexusclient.variables().set("bashing", true);
 	},
 
 	disableBR() {
 		nexusclient.variables().set("bashing", false);
-	},
+	},*/
 	
 	attackThings() {
 		nexusclient.display_notice("Running attackThings function!", "yellow");
