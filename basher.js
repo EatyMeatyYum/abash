@@ -1,6 +1,17 @@
 console.log("ABash loaded successfully");
 nexusclient.datahandler().send_command("who here");
+
+// In case of package reset, unsubscribe from all associated events
 eventBus.unsubscribe('denizenSlain', 'denSlain');
+eventBus.unsubscribe('affRemProne', 'attackReady');
+eventBus.unsubscribe('affRemParalysis', 'attackReady');
+eventBus.unsubscribe('affRemBound', 'attackReady');
+eventBus.unsubscribe('affRemEntangled', 'attackReady');
+eventBus.unsubscribe('affRemTransfixation', 'attackReady');
+eventBus.unsubscribe('affRemWebbed', 'attackReady');
+eventBus.unsubscribe('affRemStunned', 'attackReady');
+eventBus.unsubscribe('onEq', 'attackReady');
+eventBus.unsubscribe('onBal', 'attackReady');
 
 if(!nexusclient.variables().get("basharrrPrioList")) {
   nexusclient.display_notice("There's no bashing prio list!!!", "red");
