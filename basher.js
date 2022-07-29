@@ -95,6 +95,8 @@ const abash = {
 			tempAttack = "terran pulverise";
 		} else if (myClass == "Depthswalker") {
 			tempAttack = "shadow reap";
+		} else if (myClass == "Jester") {
+			tempAttack = "bop";
 		}
   
 		nexusclient.variables().set("atkCommand", tempAttack);
