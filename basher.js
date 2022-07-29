@@ -70,14 +70,6 @@ const abash = {
 		eventBus.subscribe('onBal', attackReady, 'attackReady');
 
 	},
-
-	/*enableBR() {
-		nexusclient.variables().set("bashing", true);
-	},
-
-	disableBR() {
-		nexusclient.variables().set("bashing", false);
-	},*/
 	
 	attackThings() {
 		nexusclient.display_notice("Running attackThings function!", "yellow");
@@ -122,10 +114,8 @@ const abash = {
 		if (enemyFound == false) {
 			nexusclient.display_notice("No enemies found", "green");
 			nexusclient.datahandler().send_command("st none");
-			//abash.disableBR();
 			nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
-			//abash.enableBR();
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempAttack);
 		}
