@@ -37,6 +37,54 @@ var denSlain = function(denizen) {
     nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
   }
 
-  nexusclient.datahandler().send_command("attackThings");
+  attackThings();
+  //nexusclient.datahandler().send_command("attackThings");
 }
 eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
+
+function attackThings() {
+  var roomItems = GMCP.Items.room;
+  var prioList = nexusclient.variables().get("basharrrPrioList");
+  var currentArea = nexusclient.variables().get("currentArea");
+  var enemyList = prioList[currentArea];
+  var enemyFound = false;
+  var myClass = nexusclient.variables().get("curClass");
+  var tempAttack = "gut";
+  var bashing = nexusclient.variables().get("bashing");
+
+  if(myClass == "Runewarden") {
+    tempAttack = "battlefury focus speed | slaughter";
+  } else if (myClass == "Red Dragon") {
+    tempAttack = "gut";
+  } else if (myClass == "Depthswalker") {
+    tempAttack = "shadow reap";
+  } else if (myClass == "Druid") {
+    tempAttack = "maul";
+  } else if (myClass == "earth Elemental Lord") {
+    tempAttack = "terran pulverise";
+  } else if (myClass == "Depthswalker") {
+    tempAttack = "shadow reap";
+  }
+  
+  nexusclient.variables().set("atkCommand", tempAttack);
+
+  roomItems.forEach(function(el) {
+    if(enemyList && enemyFound == false) {
+    	enemyList.forEach(function(el2) {
+	      if(el.name == el2) {
+    	    enemyFound = true;
+          nexusclient.datahandler().send_command("st " + el.id);
+   	    }
+      });
+    }
+  });
+
+  if (enemyFound == false) {
+    nexusclient.display_notice("No enemies found", "green");
+    nexusclient.datahandler().send_command("st none");
+    nexusclient.datahandler().send_command("disableBR");
+  } else if (bashing == false) {
+    nexusclient.datahandler().send_command("enableBR");
+    nexusclient.datahandler().send_command(tempAttack);
+  }
+}
