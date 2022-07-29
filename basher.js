@@ -27,7 +27,7 @@ const abash = {
 
 		const denSlain = function(denizen) {
 			var slainDenizen = denizen;
-			var currentArea = nexusclient.variables().get("currentArea");
+			var currentArea = GMCP.Location.areaname;
 			var prioList = nexusclient.variables().get("basharrrPrioList");
 
 			if(prioList[currentArea]) {
