@@ -1,1 +1,1 @@
-var test = true;
+// This is a test
