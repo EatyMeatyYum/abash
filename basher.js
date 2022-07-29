@@ -55,14 +55,7 @@ eventBus.subscribe('denizenSlain', denSlain, 'denSlain');
 
 // Trigger: Main attack trigger
 var attackReady = function() {
-	var bashing = nexusclient.variables().get("bashing");
-
-	if(bashing) {
-		//var atkCommand = "gut";
-		var atkCommand = get_variable("atkCommand");
-
-		send_command(atkCommand);
-	}
+	commitAttack();
 }
 eventBus.subscribe('affRemProne', attackReady, 'attackReady');
 eventBus.subscribe('affRemParalysis', attackReady, 'attackReady');
@@ -130,4 +123,15 @@ function enableBR() {
 
 function disableBR() {
 	nexusclient.variables().set("bashing", false);
+}
+
+function commitAttack() {
+	var bashing = nexusclient.variables().get("bashing");
+
+	if(bashing) {
+		//var atkCommand = "gut";
+		var atkCommand = get_variable("atkCommand");
+
+		send_command(atkCommand);
+	}
 }
