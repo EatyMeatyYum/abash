@@ -97,7 +97,10 @@ const abash = {
 			tempAttack = "shadow reap";
 		} else if (myClass == "Jester") {
 			tempAttack = "bop";
-		}
+		} else {
+                        tempAttack = "kill";
+                }
+   
   
 		nexusclient.variables().set("atkCommand", tempAttack);
 
