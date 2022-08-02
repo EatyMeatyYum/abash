@@ -79,7 +79,7 @@ const abash = {
 		var enemyList = prioList[currentArea];
 		var enemyFound = false;
 		nexusclient.display_notice("enemyFound = false", "yellow");
-		var myClass = nexusclient.variables().get("curClass");
+		var myClass = nexusclient.datahandler().GMCP.Status.class;
 		var tempAttack = "gut";
 		var bashing = nexusclient.variables().get("bashing");
 
@@ -109,7 +109,7 @@ const abash = {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
-						nexusclient.display_notice("Found an enemy!", "yellow");
+						//nexusclient.display_notice("Found an enemy!", "yellow");
 						nexusclient.datahandler().send_command("st " + el.id);
 					}
 				});
