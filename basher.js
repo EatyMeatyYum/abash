@@ -27,7 +27,7 @@ const abash = {
 
 		const denSlain = function(denizen) {
 			var slainDenizen = denizen;
-			var currentArea = GMCP.Location.areaname;
+			var currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 			var prioList = nexusclient.variables().get("basharrrPrioList");
 
 			if(prioList[currentArea]) {
@@ -75,7 +75,7 @@ const abash = {
 		nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		var prioList = nexusclient.variables().get("basharrrPrioList");
-		var currentArea = nexusclient.variables().get("currentArea");
+		var currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		var enemyList = prioList[currentArea];
 		var enemyFound = false;
 		nexusclient.display_notice("enemyFound = false", "yellow");
