@@ -1,7 +1,6 @@
 const abash = {
 	startUp() {
 		console.log("ABash loaded successfully");
-		nexusclient.datahandler().send_command("who here");
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
