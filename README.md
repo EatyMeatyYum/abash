@@ -1,8 +1,8 @@
 PRE-REQUISITES:
 In order for ABash to work you will need the following:
  - Keneanung's eventBus package: https://keneanung.github.io/nexus-event-bus/EventBus.nxs
- - Argwin's eventBus events package:
- - And the ABash package:
+ - Argwin's eventBus events package
+ - And the ABash package
  
 They MUST be in that order in your Reflex Packages screen in Achaea.
 
