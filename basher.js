@@ -72,33 +72,42 @@ const abash = {
 	},
 	
 	attackThings() {
-		nexusclient.display_notice("Running attackThings function!", "yellow");
+		// nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		var prioList = nexusclient.variables().get("basharrrPrioList");
 		var currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		var enemyList = prioList[currentArea];
 		var enemyFound = false;
-		nexusclient.display_notice("enemyFound = false", "yellow");
+		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
-		var tempAttack = "gut";
+		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
-		if(myClass == "Runewarden") {
-			tempAttack = "battlefury focus speed | slaughter";
-		} else if (myClass == "Red Dragon") {
-			tempAttack = "gut";
-		} else if (myClass == "Depthswalker") {
-			tempAttack = "shadow reap";
-		} else if (myClass == "Druid") {
-			tempAttack = "maul";
-		} else if (myClass == "earth Elemental Lord") {
-			tempAttack = "terran pulverise";
-		} else if (myClass == "Depthswalker") {
-			tempAttack = "shadow reap";
-		} else if (myClass == "Jester") {
-			tempAttack = "bop";
-		} else {
-                        tempAttack = "kill";
+		switch (myClass) {
+			case "Runewarden":
+				tempAttack = "battlefury focus speed | slaughter";
+				break;
+			case "Red Dragon":
+				tempAttack = "gut";
+				break;
+			case "Depthswalker":
+				tempAttack = "shadow reap";
+				break;
+			case "Druid":
+				tempAttack = "maul";
+				break;
+			case "earth Elemental Lord":
+				tempAttack = "terran pulverise";
+				break;
+			case "Depthswalker":
+				tempAttack = "shadow reap";
+				break;
+			case "Jester":
+				tempAttack = "bop";
+				break;
+			default:
+				tempAttack = "kill";
+				break;
                 }
    
   
