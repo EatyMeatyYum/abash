@@ -6,6 +6,12 @@ In order for ABash to work you will need the following:
  
 They MUST be in that order in your Reflex Packages screen in Achaea.
 
+HOW'S IT WORK?
+ - First, you have to create a bashing button
+    - If you want to use a keybind, create a keybind in 
+ - When you kill a denizen it's added to a list, sorted by area
+ - 
+
 If you are interested in helping develop the ABash package, make a fork of the basher.js file in your own github account, make the changes, and create a pull request
 so I can review it and merge it into the file. You will not see the update for 1 to 2 days because of how the CDN updates.
 
