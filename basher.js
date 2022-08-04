@@ -136,10 +136,12 @@ const abash = {
 
         runCommand(suffix) {
                 var command = suffix;
+		
+		display_notice("Command:" + command);
 
-                switch (command) {
-                        
-                }
+                /*switch (command) {
+                	case "
+                }*/
 
         },
 
