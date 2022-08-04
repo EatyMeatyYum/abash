@@ -1,6 +1,10 @@
 const abash = {
 	startUp() {
 		console.log("ABash loaded successfully");
+		
+		// declare namespace variables
+		currentArea = "";
+		var prioList = {};
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
@@ -16,9 +20,10 @@ const abash = {
 
 		if(!nexusclient.variables().get("basharrrPrioList")) {
 			nexusclient.display_notice("There's no bashing prio list!!!", "red");
-			var prioList = {};
-			nexusclient.variables().set("basharrrPrioList", prioList);
+			abash.prioList = {};
+			nexusclient.variables().set("basharrrPrioList", abash.prioList);
 		} else {
+			abash.prioList = nexusclient.variables().get("basharrrPrioList");
 			nexusclient.display_notice("Bashing Prio List loaded into repo!", "green");
 		}
 
@@ -26,26 +31,26 @@ const abash = {
 
 		const denSlain = function(denizen) {
 			var slainDenizen = denizen;
-			var currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-			var prioList = nexusclient.variables().get("basharrrPrioList");
+			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+			// var prioList = nexusclient.variables().get("basharrrPrioList");
 
 			if(prioList[currentArea]) {
 				// Area already exists in prio list
-				var denizenList = prioList[currentArea];
+				var denizenList = abash.prioList[currentArea];
 				console.log(denizenList);
 				if(!denizenList.includes(slainDenizen)) {
 					nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
 					denizenList.push(slainDenizen);
-					prioList[currentArea] = denizenList;
+					abash.prioList[currentArea] = denizenList;
 					nexusclient.variables().set("basharrrPrioList", prioList);
 				}
 			} else {
 				// Area does not exist in prio list
 				var denizenList = [];
 				denizenList.push(slainDenizen);
-				prioList[currentArea] = denizenList;
+				abash.prioList[currentArea] = denizenList;
 				console.log(prioList);
-				nexusclient.variables().set("basharrrPrioList", prioList);
+				nexusclient.variables().set("basharrrPrioList", abash.prioList);
 				nexusclient.display_notice("[ABASH]: New area added", "yellow");
 				nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
 			}
@@ -73,9 +78,9 @@ const abash = {
 	attackThings() {
 		// nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
-		var prioList = nexusclient.variables().get("basharrrPrioList");
-		var currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-		var enemyList = prioList[currentArea];
+		abash.prioList = nexusclient.variables().get("basharrrPrioList");
+		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+		var enemyList = abash.prioList[currentArea];
 		var enemyFound = false;
 		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
@@ -139,9 +144,22 @@ const abash = {
 		
 		nexusclient.display_notice("Command:" + command);
 
-                /*switch (command) {
-                	case "
-                }*/
+                switch (command) {
+			case "help":
+				nexusclient.displaynotice("Help file TBP", "white");
+				break;
+			case "show prios here":
+				abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+				var enemyList = abash.prioList[abash.currentArea];
+				var str = "Area: " + abash.currentArea + "\n";
+				str += "-----------------\n";
+				enemyList.forEach(function(el) {
+					str += el + "\n";
+				});
+				str += "-----------------\n";
+				nexusclient.displaynotice(str, "white");
+				break;
+                }
 
         },
 
