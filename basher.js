@@ -68,7 +68,7 @@ const abash = {
 		eventBus.subscribe('onEq', attackReady, 'attackReady');
 		eventBus.subscribe('onBal', attackReady, 'attackReady');
 
-	},
+	}, // End startUp()
 	
 	attackThings() {
 		// nexusclient.display_notice("Running attackThings function!", "yellow");
@@ -132,7 +132,16 @@ const abash = {
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempAttack);
 		}
-	},
+	}, // End attackThings()
+
+        runCommand(suffix) {
+                var command = suffix;
+
+                switch (command) {
+                        
+                }
+
+        },
 
 	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
@@ -143,7 +152,7 @@ const abash = {
 
 			nexusclient.datahandler().send_command(atkCommand);
 		}
-	}
+	} // End commitAttack()
 
 } // End of namespace
 
