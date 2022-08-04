@@ -34,7 +34,7 @@ const abash = {
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 			// var prioList = nexusclient.variables().get("basharrrPrioList");
 
-			if(prioList[abash.currentArea]) {
+			if(abash.prioList[abash.currentArea]) {
 				// Area already exists in prio list
 				var denizenList = abash.prioList[abash.currentArea];
 				console.log(denizenList);
@@ -42,14 +42,14 @@ const abash = {
 					nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
 					denizenList.push(slainDenizen);
 					abash.prioList[abash.currentArea] = denizenList;
-					nexusclient.variables().set("basharrrPrioList", prioList);
+					nexusclient.variables().set("basharrrPrioList", abash.prioList);
 				}
 			} else {
 				// Area does not exist in prio list
 				var denizenList = [];
 				denizenList.push(slainDenizen);
 				abash.prioList[abash.currentArea] = denizenList;
-				console.log(prioList);
+				console.log(abash.prioList);
 				nexusclient.variables().set("basharrrPrioList", abash.prioList);
 				nexusclient.display_notice("[ABASH]: New area added", "yellow");
 				nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
@@ -143,6 +143,7 @@ const abash = {
                 var command = suffix;
 
                 switch (command) {
+				
 			case "help":
 				nexusclient.display_notice("Help file TBP", "white");
 				break;
