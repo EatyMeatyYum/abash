@@ -146,7 +146,7 @@ const abash = {
 
                 switch (command) {
 			case "help":
-				nexusclient.displaynotice("Help file TBP", "white");
+				nexusclient.display_notice("Help file TBP", "white");
 				break;
 			case "show prios here":
 				abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
@@ -157,7 +157,7 @@ const abash = {
 					str += el + "\n";
 				});
 				str += "-----------------\n";
-				nexusclient.displaynotice(str, "white");
+				nexusclient.display_notice(str, "white");
 				break;
                 }
 
