@@ -141,8 +141,6 @@ const abash = {
 
         runCommand(suffix) {
                 var command = suffix;
-		
-		nexusclient.display_notice("Command:" + command);
 
                 switch (command) {
 			case "help":
@@ -150,7 +148,6 @@ const abash = {
 				break;
 			case "show prios here":
 				abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-				nexusclient.display_notice("Area: " + abash.currentArea);
 				var enemyList = abash.prioList[abash.currentArea];
 				console.log(abash.prioList);
 				console.log("Enemy List");
@@ -163,6 +160,8 @@ const abash = {
 				str += "-----------------\n";
 				nexusclient.display_notice(str, "white");
 				break;
+			default:
+				nexusclient.display_notice("Command not recognized.", "white");
                 }
 
         },
