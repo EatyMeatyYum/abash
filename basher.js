@@ -137,7 +137,7 @@ const abash = {
         runCommand(suffix) {
                 var command = suffix;
 		
-		display_notice("Command:" + command);
+		nexusclient.display_notice("Command:" + command);
 
                 /*switch (command) {
                 	case "
