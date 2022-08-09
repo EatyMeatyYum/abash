@@ -89,7 +89,7 @@ const abash = {
 
 		switch (myClass) {
 			case "Runewarden":
-				tempAttack = "battlefury focus speed | slaughter";
+				tempAttack = "battlefury focus speed \ slaughter";
 				break;
 			case "Red Dragon":
 				tempAttack = "gut";
