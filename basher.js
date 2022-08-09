@@ -84,12 +84,14 @@ const abash = {
 		var enemyFound = false;
 		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
+		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
 		switch (myClass) {
 			case "Runewarden":
-				tempAttack = "battlefury focus speed | slaughter";
+				tempPrep = "battlefury focus speed";
+				tempAttack = "slaughter";
 				break;
 			case "Red Dragon":
 				tempAttack = "gut";
@@ -103,9 +105,6 @@ const abash = {
 			case "earth Elemental Lord":
 				tempAttack = "terran pulverise";
 				break;
-			case "Depthswalker":
-				tempAttack = "shadow reap";
-				break;
 			case "Jester":
 				tempAttack = "bop";
 				break;
@@ -114,7 +113,7 @@ const abash = {
 				break;
                 }
    
-  
+  		nexusclient.variables().set("atkPrep", tempPrep);
 		nexusclient.variables().set("atkCommand", tempAttack);
 
 		roomItems.forEach(function(el) {
@@ -135,6 +134,7 @@ const abash = {
 			nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
+			nexusclient.datahandler().send_command(tempPrep);
 			nexusclient.datahandler().send_command(tempAttack);
 		}
 	}, // End attackThings()
@@ -172,8 +172,10 @@ const abash = {
 
 		if(bashing) {
 			//var atkCommand = "gut";
+			var atkPrep = nexusclient.variables().get("atkPrep");
 			var atkCommand = nexusclient.variables().get("atkCommand");
 
+			nexusclient.datahandler().send_command(atkPrep);
 			nexusclient.datahandler().send_command(atkCommand);
 		}
 	} // End commitAttack()
