@@ -169,9 +169,11 @@ const abash = {
 
 	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
+		nexusclient.display_notice("Committing to an attack!", "green");
 
 		if(bashing) {
 			//var atkCommand = "gut";
+			nexusclient.display_notice("Prepping to attack!", "yellow");
 			var atkPrep = nexusclient.variables().get("atkPrep");
 			var atkCommand = nexusclient.variables().get("atkCommand");
 
