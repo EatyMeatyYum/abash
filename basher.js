@@ -84,12 +84,15 @@ const abash = {
 		var enemyFound = false;
 		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
+                   if(myClass == "Runewarden") {
+                      myClass = nexusclient.datahandler().GMCP.CharStats[2];
+                   }
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
 		switch (myClass) {
-			case "Runewarden":
+			case "Spec: Two Handed":
 				tempPrep = "battlefury focus speed";
 				tempAttack = "slaughter";
 				break;
