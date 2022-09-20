@@ -147,17 +147,26 @@ const abash = {
 		
 		if (command.startsWith("remove prio")) {
 			var enemyRemoval = command.slice(12);
-			nexusclient.display_notice("Checking current area for: " + enemyRemoval, "yellow");
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 			var enemyList = abash.prioList[abash.currentArea];
+			var enemyFound = false;
 			
 			enemyList.forEach(function(el) {
 				if(el == enemyRemoval) {
-					nexusclient.display_notice("Hey, we found it!", "green");
-				} else {
-					nexusclient.display_notice("Enemy not found in this area.", "red");
+					enemyFound = true;
 				}
 			})
+			
+			if (enemyFound) {
+				var enemyIndex = enemyList.indexOf(enemyRemoval);
+				if (index !== -1) {
+  					enemyList.splice(enemyIndex, 1);
+					abash.prioList[abash.currentArea] = enemyList;
+					nexusclient.display_notice("Enemy removed from prio list", "green");
+				}
+			} else {
+				nexusclient.display_notice("Enemy not found in this area.", "red");
+			}
 		} else {
 
 	                switch (command) {
