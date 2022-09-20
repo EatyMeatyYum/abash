@@ -150,11 +150,13 @@ const abash = {
 			nexusclient.display_notice("Checking current area for: " + enemyRemoval, "yellow");
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 			var enemyList = abash.prioList[abash.currentArea];
+			
 			enemyList.forEach(function(el) {
 				if(el == enemyRemoval) {
 					nexusclient.display_notice("Hey, we found it!", "green");
 				} else {
 					nexusclient.display_notice("Enemy not found in this area.", "red");
+				}
 			})
 		} else {
 
