@@ -180,7 +180,7 @@ const abash = {
 					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
 					str += "<span style='color:white'>-----------------</span>\n";
 					enemyList.forEach(function(el) {
-						str += "<span style='white'>[</span><span style='color:red' onClick='(function() { nexusclient.datahandler().send_command( \"abash remove prio " + el + "\" ); })();'> X </span><span style='color:white'> ] " + el + "</span>\n";
+						str += "<span style='white'>[</span><span style='color:red' onClick='(function() { abash.runCommand(\"remove prio " + el + "\") })();'> X </span><span style='color:white'>] " + el + "</span>\n";
 					});
 					str += "<span style='color:white'>-----------------</span>\n";
 					nexusclient.add_html_line(str);
