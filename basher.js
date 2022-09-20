@@ -146,7 +146,16 @@ const abash = {
                 var command = suffix;
 		
 		if (command.startsWith("remove prio")) {
-		    nexusclient.display_notice("Removing: " + command.slice(13), "yellow");
+			var enemyRemoval = command.slide(12);
+			nexusclient.display_notice("Checking current area for: " + enemyRemoval, "yellow");
+			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+			var enemyList = abash.prioList[abash.currentArea];
+			enemyList.forEach(function(el) {
+				if(el == enemyRemoval) {
+					nexusclient.display_notice("Hey, we found it!", "green");
+				} else {
+					nexusclient.display_notice("Enemy not found in this area.", "red");
+			}
 		} else {
 
 	                switch (command) {
@@ -157,9 +166,6 @@ const abash = {
 				case "show prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 					var enemyList = abash.prioList[abash.currentArea];
-					console.log(abash.prioList);
-					console.log("Enemy List");
-					console.log(enemyList);
 					var str = "Area: " + abash.currentArea + "\n";
 					str += "-----------------\n";
 					enemyList.forEach(function(el) {
