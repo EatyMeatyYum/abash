@@ -183,7 +183,7 @@ const abash = {
 						str += el + "\n";
 					});
 					str += "-----------------\n";
-					nexusclient.display_notice(str, "white");
+					nexusclient.add_html_line(str);
 					break;
 				default:
 					nexusclient.display_notice("Command not recognized.", "white");
