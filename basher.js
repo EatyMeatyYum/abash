@@ -178,11 +178,11 @@ const abash = {
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 					var enemyList = abash.prioList[abash.currentArea];
 					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
-					str += "-----------------\n";
+					str += "<span style='color:white'>-----------------</span>\n";
 					enemyList.forEach(function(el) {
-						str += el + "\n";
+						str += "<span style='white'>[</span><span style='color:red'> X </span><span style='color:white'>" + el + "</span>\n";
 					});
-					str += "-----------------\n";
+					str += "<span style='color:white'>-----------------</span>\n";
 					nexusclient.add_html_line(str);
 					break;
 				default:
