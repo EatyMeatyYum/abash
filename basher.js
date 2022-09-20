@@ -144,37 +144,65 @@ const abash = {
 
         runCommand(suffix) {
                 var command = suffix;
+		
+		if (command.startsWith("remove prio")) {
+			var enemyRemoval = command.slice(12);
+			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+			var enemyList = abash.prioList[abash.currentArea];
+			var enemyFound = false;
+			
+			enemyList.forEach(function(el) {
+				if(el == enemyRemoval) {
+					enemyFound = true;
+				}
+			})
+			
+			if (enemyFound) {
+				var enemyIndex = enemyList.indexOf(enemyRemoval);
+				if (enemyIndex !== -1) {
+  					enemyList.splice(enemyIndex, 1);
+					abash.prioList[abash.currentArea] = enemyList;
+					nexusclient.display_notice("Enemy removed from prio list", "green");
+				}
+			} else {
+				nexusclient.display_notice("Enemy not found in this area.", "red");
+			}
+		} else {
 
-                switch (command) {
+	                switch (command) {
 				
-			case "help":
-				nexusclient.display_notice("Help file TBP", "white");
-				break;
-			case "show prios here":
-				abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-				var enemyList = abash.prioList[abash.currentArea];
-				console.log(abash.prioList);
-				console.log("Enemy List");
-				console.log(enemyList);
-				var str = "Area: " + abash.currentArea + "\n";
-				str += "-----------------\n";
-				enemyList.forEach(function(el) {
-					str += el + "\n";
-				});
-				str += "-----------------\n";
-				nexusclient.display_notice(str, "white");
-				break;
-			default:
-				nexusclient.display_notice("Command not recognized.", "white");
+				case "help":
+					nexusclient.display_notice("ABash Help", "white");
+					nexusclient.display_notice("-----------------", "white");
+					nexusclient.display_notice("abash show prios here - list prio denizens in current area", "white");
+					nexusclient.display_notice(" - click on red X to remove a denizen from the prio list", "white");
+					break;
+				case "show prios here":
+					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+					var enemyList = abash.prioList[abash.currentArea];
+					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
+					str += "<span style='color:white'>-----------------</span>\n";
+					enemyList.forEach(function(el) {
+						str += "<span style='white'>[</span><span style='color:red' onClick='(function() { abash.runCommand(\"remove prio " + el + "\") })();'> X </span><span style='color:white'>] " + el + "</span>\n";
+					});
+					str += "<span style='color:white'>-----------------</span>\n";
+					nexusclient.add_html_line(str);
+					break;
+				default:
+					nexusclient.display_notice("Command not recognized.", "white");
+			}
                 }
 
         },
 
 	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
+		nexusclient.display_notice("Committing to an attack!", "green");
+		nexusclient.display_notice("Bashing: " + bashing, "yellow");
 
 		if(bashing) {
 			//var atkCommand = "gut";
+			nexusclient.display_notice("Prepping to attack!", "yellow");
 			var atkPrep = nexusclient.variables().get("atkPrep");
 			var atkCommand = nexusclient.variables().get("atkCommand");
 
