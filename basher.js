@@ -144,28 +144,33 @@ const abash = {
 
         runCommand(suffix) {
                 var command = suffix;
+		
+		if (command.startsWith("remove prio") {
+		    display_notice("Removing: " + command.slice(13), "yellow");
+		    } else {
 
-                switch (command) {
+	                switch (command) {
 				
-			case "help":
-				nexusclient.display_notice("Help file TBP", "white");
-				break;
-			case "show prios here":
-				abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-				var enemyList = abash.prioList[abash.currentArea];
-				console.log(abash.prioList);
-				console.log("Enemy List");
-				console.log(enemyList);
-				var str = "Area: " + abash.currentArea + "\n";
-				str += "-----------------\n";
-				enemyList.forEach(function(el) {
-					str += el + "\n";
-				});
-				str += "-----------------\n";
-				nexusclient.display_notice(str, "white");
-				break;
-			default:
-				nexusclient.display_notice("Command not recognized.", "white");
+				case "help":
+					nexusclient.display_notice("Help file TBP", "white");
+					break;
+				case "show prios here":
+					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+					var enemyList = abash.prioList[abash.currentArea];
+					console.log(abash.prioList);
+					console.log("Enemy List");
+					console.log(enemyList);
+					var str = "Area: " + abash.currentArea + "\n";
+					str += "-----------------\n";
+					enemyList.forEach(function(el) {
+						str += el + "\n";
+					});
+					str += "-----------------\n";
+					nexusclient.display_notice(str, "white");
+					break;
+				default:
+					nexusclient.display_notice("Command not recognized.", "white");
+			}
                 }
 
         },
