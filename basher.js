@@ -177,7 +177,7 @@ const abash = {
 				case "show prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 					var enemyList = abash.prioList[abash.currentArea];
-					var str = "Area: " + abash.currentArea + "\n";
+					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
 					str += "-----------------\n";
 					enemyList.forEach(function(el) {
 						str += el + "\n";
