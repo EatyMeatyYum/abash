@@ -159,7 +159,7 @@ const abash = {
 			
 			if (enemyFound) {
 				var enemyIndex = enemyList.indexOf(enemyRemoval);
-				if (index !== -1) {
+				if (enemyIndex !== -1) {
   					enemyList.splice(enemyIndex, 1);
 					abash.prioList[abash.currentArea] = enemyList;
 					nexusclient.display_notice("Enemy removed from prio list", "green");
