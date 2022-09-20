@@ -145,9 +145,9 @@ const abash = {
         runCommand(suffix) {
                 var command = suffix;
 		
-		if (command.startsWith("remove prio") {
-		    display_notice("Removing: " + command.slice(13), "yellow");
-		    } else {
+		if (command.startsWith("remove prio")) {
+		    nexusclient.display_notice("Removing: " + command.slice(13), "yellow");
+		} else {
 
 	                switch (command) {
 				
