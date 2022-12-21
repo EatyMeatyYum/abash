@@ -202,7 +202,8 @@ const abash = {
 			//var atkCommand = "gut";
 			var atkPrep = nexusclient.variables().get("atkPrep");
 			var atkCommand = nexusclient.variables().get("atkCommand");
-
+	
+			if (atkPrep != "")
 			nexusclient.datahandler().send_command("queue add free " + atkPrep);
 			nexusclient.datahandler().send_command("queue add free " + atkCommand);
 		}
