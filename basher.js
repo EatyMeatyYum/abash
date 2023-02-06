@@ -204,8 +204,8 @@ const abash = {
 			var atkCommand = nexusclient.variables().get("atkCommand");
 	
 			if (atkPrep != "")
-			nexusclient.datahandler().send_command("qa " + atkPrep);
-			nexusclient.datahandler().send_command("qa " + atkCommand);
+			nexusclient.datahandler().send_command("queue add free " + atkPrep);
+			nexusclient.datahandler().send_command("queue add free " + atkCommand);
 		}
 	} // End commitAttack()
 
