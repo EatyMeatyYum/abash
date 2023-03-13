@@ -193,7 +193,7 @@ const abash = {
 			let newAttack = command.slice(11);
 			abash.bashAttack = newAttack;
 			abash.classAttacks[abash.myClass] = newAttack;
-			nexusclient.variables().set("abashClassAttacks");
+			nexusclient.variables().set("abashClassAttacks", abash.classAttacks);
 		} else {
 
 	                switch (command) {
