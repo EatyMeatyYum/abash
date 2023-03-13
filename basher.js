@@ -32,6 +32,13 @@ const abash = {
 			nexusclient.display_notice("Bashing Prio List loaded into repo!", "green");
 		}
 
+		if(!nexusclient.variables().get("abashClassAttacks")) {
+			abash.classAttacks = {};
+			nexusclient.variables().set("abashClassAttacks", abash.classAttacks);
+		} else {
+			abash.classAttacks = nexusclient.variables().get("abashClassAttacks");
+		}
+
 		// Trigger: When a denizen is slain
 
 		const denSlain = function(denizen) {
@@ -81,12 +88,10 @@ const abash = {
 		const checkClassAttack = function() {
 			abash.myClass = nexusclient.datahandler().GMCP.Status.class;
 			nexusclient.display_notice("Current Class: " + abash.myClass);
-			if(!abash.classAttacks[abash.myClass]) {
-				abash.bashAttack = "kill";
-				nexusclient.display_notice("Class attack not set");
-			} else {
+			if(abash.myClass in abash.classAttacks) {
 				abash.bashAttack = abash.classAttacks[abash.myClass];
-				nexusclient.display_notice("Class attack set");
+			} else {
+				abash.bashAttack = "kill";
 			}
 			nexusclient.display_notice("Bashing Attack: " + abash.bashAttack);
 		} // End checkClassAttack()
