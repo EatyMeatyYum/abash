@@ -76,6 +76,12 @@ const abash = {
 		eventBus.subscribe('affRemStunned', attackReady, 'attackReady');
 		eventBus.subscribe('onEq', attackReady, 'attackReady');
 		eventBus.subscribe('onBal', attackReady, 'attackReady');
+		
+		const checkClassAttack = function() {
+			abash.myClass = nexusclient.datahandler().GMCP.Status.class;
+			nexusclient.display_notice("Current Class: " + abash.myClass);
+		} // End checkClassAttack()
+		eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
 
 	}, // End startUp()
 	
@@ -210,12 +216,6 @@ const abash = {
 			nexusclient.datahandler().send_command(atkCommand);
 		}
 	}, // End commitAttack()
-
-	checkClassAttack() {
-		abash.myClass = nexusclient.datahandler().GMCP.Status.class;
-		nexusclient.display_notice("Current Class: " + abash.myClass);
-	} // End checkClassAttack()
-	eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
 
 } // End of namespace
 
