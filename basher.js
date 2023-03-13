@@ -3,8 +3,11 @@ const abash = {
 		console.log("ABash loaded successfully");
 		
 		// declare namespace variables
-		var currentArea = "";
-		var prioList = {};
+		const version = 1.5;
+		let currentArea = "";
+		let prioList = {};
+		let classAttacks = {};
+		let myClass = nexusclient.datahandler().GMCP.Status.class;
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
@@ -17,6 +20,7 @@ const abash = {
 		eventBus.unsubscribe('affRemStunned', 'attackReady');
 		eventBus.unsubscribe('onEq', 'attackReady');
 		eventBus.unsubscribe('onBal', 'attackReady');
+		eventBus.unsubscribe('onClassChange', "checkClassAttack");
 
 		if(!nexusclient.variables().get("basharrrPrioList")) {
 			nexusclient.display_notice("There's no bashing prio list!!!", "red");
@@ -72,6 +76,7 @@ const abash = {
 		eventBus.subscribe('affRemStunned', attackReady, 'attackReady');
 		eventBus.subscribe('onEq', attackReady, 'attackReady');
 		eventBus.subscribe('onBal', attackReady, 'attackReady');
+		eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
 
 	}, // End startUp()
 	
@@ -83,15 +88,14 @@ const abash = {
 		var enemyList = abash.prioList[abash.currentArea];
 		var enemyFound = false;
 		// nexusclient.display_notice("enemyFound = false", "yellow");
-		var myClass = nexusclient.datahandler().GMCP.Status.class;
-                   if(myClass == "Runewarden") {
-                      myClass = nexusclient.datahandler().GMCP.CharStats[2];
-                   }
+        if(abash.myClass == "Runewarden") {
+            abash.myClass = nexusclient.datahandler().GMCP.CharStats[2];
+        }
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
-		switch (myClass) {
+		switch (abash.myClass) {
 			case "Spec: Two Handed":
 				tempPrep = "battlefury focus speed";
 				tempAttack = "slaughter";
@@ -142,8 +146,8 @@ const abash = {
 		}
 	}, // End attackThings()
 
-        runCommand(suffix) {
-                var command = suffix;
+    runCommand(suffix) {
+        var command = suffix;
 		
 		if (command.startsWith("remove prio")) {
 			var enemyRemoval = command.slice(12);
@@ -191,9 +195,9 @@ const abash = {
 				default:
 					nexusclient.display_notice("Command not recognized.", "white");
 			}
-                }
+        }
 
-        },
+    },
 
 	commitAttack() {
 		var bashing = nexusclient.variables().get("bashing");
@@ -202,12 +206,16 @@ const abash = {
 			//var atkCommand = "gut";
 			var atkPrep = nexusclient.variables().get("atkPrep");
 			var atkCommand = nexusclient.variables().get("atkCommand");
-	
-			if (atkPrep != "")
-			nexusclient.datahandler().send_command("queue add free " + atkPrep);
-			nexusclient.datahandler().send_command("queue add free " + atkCommand);
+
+			nexusclient.datahandler().send_command(atkPrep);
+			nexusclient.datahandler().send_command(atkCommand);
 		}
-	} // End commitAttack()
+	}, // End commitAttack()
+
+	checkClassAttack() {
+		abash.myClass = nexusclient.datahandler().GMCP.Status.class;
+		nexusclient.display_notice("Current Class: " + abash.myClass);
+	} // End checkClassAttack()
 
 } // End of namespace
 
