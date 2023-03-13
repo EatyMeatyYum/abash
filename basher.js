@@ -8,6 +8,7 @@ const abash = {
 		let prioList = {};
 		let classAttacks = {};
 		let myClass = nexusclient.datahandler().GMCP.Status.class;
+		let bashAttack;
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
@@ -76,10 +77,16 @@ const abash = {
 		eventBus.subscribe('affRemStunned', attackReady, 'attackReady');
 		eventBus.subscribe('onEq', attackReady, 'attackReady');
 		eventBus.subscribe('onBal', attackReady, 'attackReady');
-		
+
 		const checkClassAttack = function() {
 			abash.myClass = nexusclient.datahandler().GMCP.Status.class;
 			nexusclient.display_notice("Current Class: " + abash.myClass);
+			if(!abash.classAttacks[abash.myClass]) {
+				abash.bashAttack = "kill";
+			} else {
+				abash.bashAttack = abash.classAttacks[abash.myClass];
+			}
+			nexusclient.display_notice("Bashing Attack: " + abash.bashAttack);
 		} // End checkClassAttack()
 		eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
 
