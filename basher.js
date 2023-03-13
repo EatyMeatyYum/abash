@@ -159,8 +159,9 @@ const abash = {
 			nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
-			nexusclient.datahandler().send_command(tempPrep);
-			nexusclient.datahandler().send_command(tempAttack);
+			//nexusclient.datahandler().send_command(tempPrep);
+			//nexusclient.datahandler().send_command(tempAttack);
+			nexusclient.datahandler().send_command(abash.bashAttack);
 		}
 	}, // End attackThings()
 
