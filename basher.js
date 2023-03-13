@@ -166,7 +166,7 @@ const abash = {
 	}, // End attackThings()
 
     runCommand(suffix) {
-        var command = suffix;
+        let command = suffix;
 		
 		if (command.startsWith("remove prio")) {
 			var enemyRemoval = command.slice(12);
@@ -190,6 +190,11 @@ const abash = {
 			} else {
 				nexusclient.display_notice("Enemy not found in this area.", "red");
 			}
+		} else if (command.startsWith("set attack")) {
+			let newAttack = command.slice(11);
+			abash.bashAttack = newAttack;
+			abash.classAttacks[abash.myClass] = newAttack;
+			nexusclient.variables().set("abashClassAttacks");
 		} else {
 
 	                switch (command) {
