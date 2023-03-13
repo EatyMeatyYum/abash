@@ -101,20 +101,19 @@ const abash = {
 	
 	attackThings() {
 		// nexusclient.display_notice("Running attackThings function!", "yellow");
-		var roomItems = nexusclient.datahandler().GMCP.Items.room;
+		let roomItems = nexusclient.datahandler().GMCP.Items.room;
 		abash.prioList = nexusclient.variables().get("basharrrPrioList");
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-		var enemyList = abash.prioList[abash.currentArea];
-		var enemyFound = false;
-		// nexusclient.display_notice("enemyFound = false", "yellow");
+		let enemyList = abash.prioList[abash.currentArea];
+		let enemyFound = false;
         if(abash.myClass == "Runewarden") {
             abash.myClass = nexusclient.datahandler().GMCP.CharStats[2];
         }
-		var tempPrep = "";
-		var tempAttack = "";
+		/*var tempPrep = "";
+		var tempAttack = "";*/
 		var bashing = nexusclient.variables().get("bashing");
 
-		switch (abash.myClass) {
+		/*switch (abash.myClass) {
 			case "Spec: Two Handed":
 				tempPrep = "battlefury focus speed";
 				tempAttack = "slaughter";
@@ -137,10 +136,10 @@ const abash = {
 			default:
 				tempAttack = "kill";
 				break;
-                }
+                }*/
    
-  		nexusclient.variables().set("atkPrep", tempPrep);
-		nexusclient.variables().set("atkCommand", tempAttack);
+  		//nexusclient.variables().set("atkPrep", tempPrep);
+		//nexusclient.variables().set("atkCommand", tempAttack);
 
 		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
@@ -228,11 +227,11 @@ const abash = {
 
 		if(bashing) {
 			//var atkCommand = "gut";
-			var atkPrep = nexusclient.variables().get("atkPrep");
-			var atkCommand = nexusclient.variables().get("atkCommand");
+			//var atkPrep = nexusclient.variables().get("atkPrep");
+			//var atkCommand = nexusclient.variables().get("atkCommand");
 
-			nexusclient.datahandler().send_command(atkPrep);
-			nexusclient.datahandler().send_command(atkCommand);
+			nexusclient.datahandler().send_command(abash.bashAttack);
+			// nexusclient.datahandler().send_command(atkCommand);
 		}
 	}, // End commitAttack()
 
