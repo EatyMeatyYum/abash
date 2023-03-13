@@ -83,8 +83,10 @@ const abash = {
 			nexusclient.display_notice("Current Class: " + abash.myClass);
 			if(!abash.classAttacks[abash.myClass]) {
 				abash.bashAttack = "kill";
+				nexusclient.display_notice("Class attack not set");
 			} else {
 				abash.bashAttack = abash.classAttacks[abash.myClass];
+				nexusclient.display_notice("Class attack set");
 			}
 			nexusclient.display_notice("Bashing Attack: " + abash.bashAttack);
 		} // End checkClassAttack()
