@@ -45,6 +45,8 @@ const abash = {
 		} else {
 			abash.bashAttack = "kill";
 		}
+		console.log("myClass: " + abash.myClass);
+		console.log("ABash bashing attack: " + abash.bashAttack);
 
 		// Trigger: When a denizen is slain
 		const denSlain = function(denizen) {
