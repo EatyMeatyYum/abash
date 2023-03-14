@@ -9,11 +9,6 @@ const abash = {
 		let classAttacks = {};
 		let myClass = nexusclient.datahandler().GMCP.Status.class;
 		let bashAttack;
-		if(abash.myClass in abash.classAttacks) {
-			abash.bashAttack = abash.classAttacks[abash.myClass];
-		} else {
-			abash.bashAttack = "kill";
-		}
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
@@ -42,6 +37,12 @@ const abash = {
 			nexusclient.variables().set("abashClassAttacks", abash.classAttacks);
 		} else {
 			abash.classAttacks = nexusclient.variables().get("abashClassAttacks");
+		}
+
+		if(abash.myClass in abash.classAttacks) {
+			abash.bashAttack = abash.classAttacks[abash.myClass];
+		} else {
+			abash.bashAttack = "kill";
 		}
 
 		// Trigger: When a denizen is slain
