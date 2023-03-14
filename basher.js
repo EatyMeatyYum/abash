@@ -9,6 +9,11 @@ const abash = {
 		let classAttacks = {};
 		let myClass = nexusclient.datahandler().GMCP.Status.class;
 		let bashAttack;
+		if(abash.myClass in abash.classAttacks) {
+			abash.bashAttack = abash.classAttacks[abash.myClass];
+		} else {
+			abash.bashAttack = "kill";
+		}
 
 		// In case of package reset, unsubscribe from all associated events
 		eventBus.unsubscribe('denizenSlain', 'denSlain');
@@ -40,15 +45,13 @@ const abash = {
 		}
 
 		// Trigger: When a denizen is slain
-
 		const denSlain = function(denizen) {
-			var slainDenizen = denizen;
+			let slainDenizen = denizen;
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-			// var prioList = nexusclient.variables().get("basharrrPrioList");
 
 			if(abash.prioList[abash.currentArea]) {
 				// Area already exists in prio list
-				var denizenList = abash.prioList[abash.currentArea];
+				let denizenList = abash.prioList[abash.currentArea];
 				console.log(denizenList);
 				if(!denizenList.includes(slainDenizen)) {
 					nexusclient.display_notice("[ABASH]: New denizen added", "yellow");
@@ -58,7 +61,7 @@ const abash = {
 				}
 			} else {
 				// Area does not exist in prio list
-				var denizenList = [];
+				let denizenList = [];
 				denizenList.push(slainDenizen);
 				abash.prioList[abash.currentArea] = denizenList;
 				console.log(abash.prioList);
@@ -94,59 +97,27 @@ const abash = {
 				abash.bashAttack = "kill";
 			}
 			nexusclient.display_notice("Bashing Attack: " + abash.bashAttack);
+			if(abash.bashAttack == "kill") {
+				nexusclient.display_notice("To set your class bashing attack use ABASH SET ATTACK <attack>");
+			}
 		} // End checkClassAttack()
 		eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
 
 	}, // End startUp()
 	
 	attackThings() {
-		// nexusclient.display_notice("Running attackThings function!", "yellow");
 		let roomItems = nexusclient.datahandler().GMCP.Items.room;
 		abash.prioList = nexusclient.variables().get("basharrrPrioList");
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		let enemyList = abash.prioList[abash.currentArea];
 		let enemyFound = false;
-        if(abash.myClass == "Runewarden") {
-            abash.myClass = nexusclient.datahandler().GMCP.CharStats[2];
-        }
-		/*var tempPrep = "";
-		var tempAttack = "";*/
-		var bashing = nexusclient.variables().get("bashing");
-
-		/*switch (abash.myClass) {
-			case "Spec: Two Handed":
-				tempPrep = "battlefury focus speed";
-				tempAttack = "slaughter";
-				break;
-			case "Red Dragon":
-				tempAttack = "gut";
-				break;
-			case "Depthswalker":
-				tempAttack = "shadow reap";
-				break;
-			case "Druid":
-				tempAttack = "maul";
-				break;
-			case "earth Elemental Lord":
-				tempAttack = "terran pulverise";
-				break;
-			case "Jester":
-				tempAttack = "bop";
-				break;
-			default:
-				tempAttack = "kill";
-				break;
-                }*/
-   
-  		//nexusclient.variables().set("atkPrep", tempPrep);
-		//nexusclient.variables().set("atkCommand", tempAttack);
+		let bashing = nexusclient.variables().get("bashing");
 
 		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
-						//nexusclient.display_notice("Found an enemy!", "yellow");
 						nexusclient.datahandler().send_command("st " + el.id);
 					}
 				});
@@ -159,8 +130,6 @@ const abash = {
 			nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
-			//nexusclient.datahandler().send_command(tempPrep);
-			//nexusclient.datahandler().send_command(tempAttack);
 			nexusclient.datahandler().send_command(abash.bashAttack);
 		}
 	}, // End attackThings()
@@ -169,10 +138,10 @@ const abash = {
         let command = suffix;
 		
 		if (command.startsWith("remove prio")) {
-			var enemyRemoval = command.slice(12);
+			let enemyRemoval = command.slice(12);
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-			var enemyList = abash.prioList[abash.currentArea];
-			var enemyFound = false;
+			let enemyList = abash.prioList[abash.currentArea];
+			let enemyFound = false;
 			
 			enemyList.forEach(function(el) {
 				if(el == enemyRemoval) {
@@ -181,7 +150,7 @@ const abash = {
 			})
 			
 			if (enemyFound) {
-				var enemyIndex = enemyList.indexOf(enemyRemoval);
+				let enemyIndex = enemyList.indexOf(enemyRemoval);
 				if (enemyIndex !== -1) {
   					enemyList.splice(enemyIndex, 1);
 					abash.prioList[abash.currentArea] = enemyList;
@@ -204,11 +173,13 @@ const abash = {
 					nexusclient.display_notice("-----------------", "white");
 					nexusclient.display_notice("abash show prios here - list prio denizens in current area", "white");
 					nexusclient.display_notice(" - click on red X to remove a denizen from the prio list", "white");
+					nexusclient.display_notice("abash set attack <attack> - Sets the bashing attack for your current class.", "white");
+					nexusclient.display_notice("*Note: if you're setting a multicommand attack you will need to change your commandseparator first, then set it back afterwards.", "white");
 					break;
 				case "show prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-					var enemyList = abash.prioList[abash.currentArea];
-					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
+					let enemyList = abash.prioList[abash.currentArea];
+					let str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
 					str += "<span style='color:white'>-----------------</span>\n";
 					enemyList.forEach(function(el) {
 						str += "<span style='white'>[</span><span style='color:red' onClick='(function() { abash.runCommand(\"remove prio " + el + "\") })();'> X </span><span style='color:white'>] " + el + "</span>\n";
@@ -220,19 +191,13 @@ const abash = {
 					nexusclient.display_notice("Command not recognized.", "white");
 			}
         }
-
     },
 
 	commitAttack() {
-		var bashing = nexusclient.variables().get("bashing");
+		let bashing = nexusclient.variables().get("bashing");
 
 		if(bashing) {
-			//var atkCommand = "gut";
-			//var atkPrep = nexusclient.variables().get("atkPrep");
-			//var atkCommand = nexusclient.variables().get("atkCommand");
-
 			nexusclient.datahandler().send_command(abash.bashAttack);
-			// nexusclient.datahandler().send_command(atkCommand);
 		}
 	}, // End commitAttack()
 
