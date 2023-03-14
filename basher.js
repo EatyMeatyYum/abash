@@ -97,15 +97,15 @@ const abash = {
 
 		const checkClassAttack = function() {
 			abash.myClass = nexusclient.datahandler().GMCP.Status.class;
-			nexusclient.display_notice("Current Class: " + abash.myClass);
+			nexusclient.display_notice("Current Class: " + abash.myClass, "white");
 			if(abash.myClass in abash.classAttacks) {
 				abash.bashAttack = abash.classAttacks[abash.myClass];
 			} else {
 				abash.bashAttack = "kill";
 			}
-			nexusclient.display_notice("Bashing Attack: " + abash.bashAttack);
+			nexusclient.display_notice("Bashing Attack: ", "white", "", abash.bashAttack, "yellow");
 			if(abash.bashAttack == "kill") {
-				nexusclient.display_notice("To set your class bashing attack use ABASH SET ATTACK <attack>");
+				nexusclient.display_notice("To set your class bashing attack use ABASH SET ATTACK <attack>", "white");
 			}
 		} // End checkClassAttack()
 		eventBus.subscribe('onClassChange', checkClassAttack, 'checkClassAttack');
