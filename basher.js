@@ -8,6 +8,7 @@ const abash = {
 		let prioList = {};
 		let classAttacks = {};
 		let myClass = nexusclient.datahandler().GMCP.Status.class;
+		console.log("ABash class set to: " + myClass);
 		let bashAttack;
 
 		// In case of package reset, unsubscribe from all associated events
