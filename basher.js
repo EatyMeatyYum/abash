@@ -1,9 +1,11 @@
 const abash = {
+	version = 1.5
+
 	startUp() {
 		console.log("ABash loaded successfully");
 		
 		// declare namespace variables
-		const version = 1.5;
+		//const version = 1.5;
 		let currentArea = "";
 		let prioList = {};
 		let classAttacks = {};
