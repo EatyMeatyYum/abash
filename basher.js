@@ -1,5 +1,5 @@
 const abash = {
-	version: 1.5.1,
+	version: 1.5,
 
 	startUp() {
 		console.log("ABash loaded successfully");
