@@ -11,6 +11,7 @@ const abash = {
 		let classAttacks = {};
 		let myClass;
 		abash.myClass = nexusclient.datahandler().GMCP.Status.class;
+		console.log("GMCP class: " + nexusclient.datahandler().GMCP.Status.class);
 		console.log("ABash class set to: " + abash.myClass);
 		let bashAttack;
 
