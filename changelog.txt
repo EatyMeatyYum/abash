@@ -1,0 +1,6 @@
+2.0 -
+The package is no longer connected to the external javascript file in github.
+Because of the above, it now works on mobile. I recommend using only for light hunting as it will lag after a while and may not be able to keep up with tougher areas.
+You WILL have to change the script for your bashing button. The instructions in the readme have been updated.
+You can now use your bashing button to both start AND STOP bashing. This makes fleeing a million times easier.
+
