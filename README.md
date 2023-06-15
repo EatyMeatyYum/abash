@@ -8,9 +8,9 @@ They MUST be in that order in your Reflex Packages screen in Achaea.
 
 HOW'S IT WORK?
  - First, you have to create a bashing button
-    - Create either a keybind, button, or Nexus alias and set it to run the following script:
+    - Create either a keybind, button, or Nexus alias and set it to run the following command/alias:
 
-          abash.attackThings();
+          ABashAttack
 
  - When you kill a denizen it's added to a list, sorted by area.
  - Anytime you use your bashing button (keybind, alias, whatever) it will kill all denizens in the room that are already on the list.
