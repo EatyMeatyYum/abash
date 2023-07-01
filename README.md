@@ -16,9 +16,4 @@ HOW'S IT WORK?
  - Anytime you use your bashing button (keybind, alias, whatever) it will kill all denizens in the room that are already on the list.
  - NOTE: If you have not killed any denizens then your list is empty! If you install the package, set your bashing button, and then hit the button, nothing will happen. This is not a bug.
 
-If you are interested in helping develop the ABash package, check the queue on the wiki, make a fork of the basher.js file in your own github account, make the changes, and create a pull request
-so I can review it and merge it into the file. You will not see the update for 1 to 2 days because of how the CDN updates.
-
-If you absolutely must see your update immediately, let me know and I can send you the commit ID and instructions on how to use it.
-
 Argwin
