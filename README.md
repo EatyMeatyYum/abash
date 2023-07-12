@@ -16,4 +16,7 @@ HOW'S IT WORK?
  - Anytime you use your bashing button (keybind, alias, whatever) it will kill all denizens in the room that are already on the list.
  - NOTE: If you have not killed any denizens then your list is empty! If you install the package, set your bashing button, and then hit the button, nothing will happen. This is not a bug.
 
+Known Weirdness:
+ - If ABash sets the target but does not attack - use CONFIG COMMANDSEPARATOR - if you do not have a command separator set, set one using CONFIG COMMANDSEPARATOR <whatever you want>
+
 Argwin
