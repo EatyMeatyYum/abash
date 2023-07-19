@@ -5,6 +5,7 @@ In order for ABash to work you will need the following:
  - And the ABash package
  
 They MUST be in that order in your Reflex Packages screen in Achaea.
+NOTE: After installing all three packages, in the right order, you will need to either log off and then back on, or reset the package in the Reflex Packages settings screen.
 
 HOW'S IT WORK?
  - First, you have to create a bashing button
