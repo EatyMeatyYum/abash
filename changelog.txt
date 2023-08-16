@@ -1,3 +1,5 @@
+2.4.1 - Added metadata function to support Keneanung's package manager.
+
 2.0 -
 The package is no longer connected to the external javascript file in github.
 Because of the above, it now works on mobile. I recommend using only for light hunting as it will lag after a while and may not be able to keep up with tougher areas.
